@@ -124,28 +124,28 @@ export default function CakePreorderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gold p-8 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-gold p-4 sm:p-8 font-sans relative overflow-hidden">
       {/* 2D Diamonds Background */}
       <div className="fixed inset-0 -z-10 grid grid-cols-3 gap-4 p-8 opacity-10">
         {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className={`w-full h-32 bg-black transform rotate-45 animate-shine-${i % 3}`}
+            className={`w-full h-32 bg-black transform rotate-45`}
           />
         ))}
       </div>
 
-      {/* Cart Panel - Now always visible */}
-      <div className={`fixed top-20 right-4 bg-gradient-to-br from-orange-50 to-orange-100 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-40 transform transition-transform duration-300 rounded-lg overflow-hidden`}>
-        <div className="w-72 flex flex-col">
-          <div className="p-4 border-b-2 border-black bg-white">
+      {/* Cart Panel - Mobile Optimized */}
+      <div className={`fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:top-20 md:right-4 bg-gradient-to-br from-orange-50 to-orange-100 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden`}>
+        <div className="w-full md:w-72 flex flex-col">
+          <div className="p-3 md:p-4 border-b-2 border-black bg-white">
             <h2 className="text-xl font-bold">Your Cart 🛒</h2>
           </div>
 
           {/* Cart Items */}
-          <div className="p-4 overflow-y-auto custom-scrollbar" style={{ maxHeight: '400px' }}>
+          <div className="p-3 md:p-4 overflow-y-auto custom-scrollbar h-[200px] md:h-[400px]">
             {Object.keys(cart).length === 0 ? (
-              <div className="text-center py-6">
+              <div className="text-center py-4 md:py-6">
                 <p className="text-gray-500">Your cart is empty</p>
                 <p className="text-sm text-gray-400 mt-1">Add some treats!</p>
               </div>
@@ -157,10 +157,10 @@ export default function CakePreorderPage() {
                 return (
                   <div 
                     key={id} 
-                    className="mb-3 p-2 bg-white border-2 border-black transform hover:rotate-1 transition-transform shadow-[2px_2px_0_0_rgba(0,0,0,1)] rounded-lg"
+                    className="mb-2 md:mb-3 p-2 bg-white border-2 border-black transform hover:rotate-1 transition-transform shadow-[2px_2px_0_0_rgba(0,0,0,1)] rounded-lg"
                   >
                     <div className="flex items-start space-x-2">
-                      <div className="relative w-12 h-12 flex-shrink-0">
+                      <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
                         <Image
                           src={cake.image}
                           alt={cake.name}
@@ -188,8 +188,8 @@ export default function CakePreorderPage() {
           </div>
 
           {/* Cart Footer */}
-          <div className="p-4 border-t-2 border-black bg-white">
-            <div className="flex justify-between items-center mb-3">
+          <div className="p-3 md:p-4 border-t-2 border-black bg-white">
+            <div className="flex justify-between items-center mb-2 md:mb-3">
               <span className="font-bold">Total</span>
               <span className="font-bold">R{getTotalPrice()}</span>
             </div>
@@ -204,23 +204,23 @@ export default function CakePreorderPage() {
         </div>
       </div>
 
-      <main className="max-w-[calc(100%-20rem)] mr-80 ml-8">
-        <div className="flex justify-between items-center mb-8">
+      <main className="pb-48 md:pb-8 md:max-w-[calc(100%-20rem)] md:mr-80 md:ml-8">
+        <div className="flex justify-between items-center mb-6 md:mb-8">
           <Link href="/">
-            <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-2 px-4 rounded">
+            <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-1.5 md:py-2 px-3 md:px-4 text-sm md:text-base rounded">
               ← Back to Home
             </Button>
           </Link>
         </div>
 
-        <h1 className="text-6xl font-bold mb-8 text-black transform -rotate-2 bg-white p-4 inline-block shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 text-black transform -rotate-2 bg-white p-3 md:p-4 inline-block shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
           Bakery Pre-orders 🧁
         </h1>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {cakes.map((cake) => (
-            <div key={cake.id} className="bg-white p-6 transform rotate-2 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
-              <div className="relative h-48 mb-4">
+            <div key={cake.id} className="bg-white p-4 md:p-6 transform rotate-2 hover:rotate-0 transition-transform shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
+              <div className="relative h-36 md:h-48 mb-3 md:mb-4">
                 <Image
                   src={cake.image}
                   alt={cake.name}
@@ -229,10 +229,10 @@ export default function CakePreorderPage() {
                   className="rounded-lg"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">{cake.name}</h3>
-              <p className="text-gray-600 mb-2 h-20">{cake.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-2">{cake.name}</h3>
+              <p className="text-gray-600 mb-2 h-16 md:h-20 text-sm md:text-base">{cake.description}</p>
               <div className="flex justify-between items-center">
-                <span className="text-lg font-bold">R{cake.price}</span>
+                <span className="text-base md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
                   {cart[cake.id] > 0 && (
                     <span className="font-bold">{cart[cake.id]}</span>
