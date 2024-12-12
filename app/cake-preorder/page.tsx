@@ -123,6 +123,10 @@ export default function CakePreorderPage() {
     window.open(whatsappUrl, '_blank')
   }
 
+  const getTotalItems = () => {
+    return Object.values(cart).reduce((sum, count) => sum + count, 0)
+  }
+
   return (
     <div className="min-h-screen bg-gold p-4 sm:p-8 font-sans relative overflow-hidden">
       {/* 2D Diamonds Background */}
@@ -136,14 +140,15 @@ export default function CakePreorderPage() {
       </div>
 
       {/* Cart Panel - Mobile Optimized */}
-      <div className={`fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:top-20 md:right-4 bg-gradient-to-br from-orange-50 to-orange-100 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden`}>
+      <div className={`fixed bottom-0 left-0 right-0 md:right-auto md:left-auto md:top-0 md:w-[400px] bg-white border-t-4 md:border-l-4 border-black z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden`}>
         <div className="w-full md:w-72 flex flex-col">
-          <div className="p-3 md:p-4 border-b-2 border-black bg-white">
-            <h2 className="text-xl font-bold">Your Cart 🛒</h2>
+          <div className="p-2 md:p-4 border-b-2 md:border-b-4 border-black bg-white">
+            <h2 className="text-lg md:text-xl font-bold">Your Cart 🛒</h2>
+            <span className="text-sm md:text-base">{getTotalItems()} items</span>
           </div>
 
           {/* Cart Items */}
-          <div className="p-3 md:p-4 overflow-y-auto custom-scrollbar h-[150px] md:h-[400px]">
+          <div className="p-2 md:p-4 overflow-y-auto custom-scrollbar h-[100px] md:h-[400px]">
             {Object.keys(cart).length === 0 ? (
               <div className="text-center py-4 md:py-6">
                 <p className="text-gray-500">Your cart is empty</p>
@@ -188,7 +193,7 @@ export default function CakePreorderPage() {
           </div>
 
           {/* Cart Footer */}
-          <div className="p-3 md:p-4 border-t-2 border-black bg-white">
+          <div className="p-2 md:p-4 border-t-2 md:border-t-4 border-black bg-white">
             <div className="flex justify-between items-center mb-2 md:mb-3">
               <span className="font-bold">Total</span>
               <span className="font-bold">R{getTotalPrice()}</span>
@@ -217,20 +222,20 @@ export default function CakePreorderPage() {
           Bakery Pre-orders 🧁
         </h1>
         
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 px-1 md:px-4 mb-24">
           {cakes.map((cake) => (
-            <div key={cake.id} className="bg-white p-4 md:p-6 transform rotate-2 hover:rotate-0 transition-transform shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
-              <div className="relative h-36 md:h-48 mb-3 md:mb-4">
+            <div key={cake.id} className="bg-white p-2 md:p-6 transform rotate-1 hover:rotate-0 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-2 md:border-4 border-black w-full">
+              <div className="relative h-32 md:h-56 mb-2 md:mb-4">
                 <Image
                   src={cake.image}
                   alt={cake.name}
                   fill
-                  style={{ objectFit: 'cover' }}
-                  className="rounded-lg"
+                  className="object-cover rounded-lg"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              <h3 className="text-lg md:text-xl font-bold mb-2">{cake.name}</h3>
-              <p className="text-gray-600 mb-2 h-16 md:h-20 text-sm md:text-base">{cake.description}</p>
+              <h3 className="text-base md:text-xl font-bold mb-1 md:mb-2">{cake.name}</h3>
+              <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3">{cake.description}</p>
               <div className="flex justify-between items-center">
                 <span className="text-base md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
