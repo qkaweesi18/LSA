@@ -365,3 +365,21 @@ button {
 [data-state] {
   animation: none !important;
 }
+
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.check-mark {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.check-mark.animate {
+  animation: drawCheck 0.5s ease-in-out forwards;
+}

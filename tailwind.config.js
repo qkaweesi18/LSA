@@ -14,6 +14,11 @@ module.exports = {
         'brutal': '5px 5px 0 0 rgba(0,0,0,1)',
         'brutal-hover': '8px 8px 0 0 rgba(0,0,0,1)',
       },
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+        inconsolata: ['var(--font-inconsolata)'],
+      },
       keyframes: {
         'shine-0': {
           '0%, 100%': { opacity: 0.1 },
@@ -26,17 +31,12 @@ module.exports = {
         'shine-2': {
           '0%, 100%': { opacity: 0.05 },
           '50%': { opacity: 0.1 }
-        },
-        'slide-in': {
-          '0%': { transform: 'translateX(-100%) rotate(-2deg)' },
-          '100%': { transform: 'translateX(0) rotate(-2deg)' }
         }
       },
       animation: {
         'shine-0': 'shine-0 4s ease-in-out infinite',
         'shine-1': 'shine-1 4s ease-in-out infinite 1s',
-        'shine-2': 'shine-2 4s ease-in-out infinite 2s',
-        'slide-in': 'slide-in 0.5s ease-out'
+        'shine-2': 'shine-2 4s ease-in-out infinite 2s'
       },
     },
   },

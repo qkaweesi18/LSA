@@ -66,7 +66,7 @@ const cakes = [
 
 export default function CakePreorderPage() {
   const [cart, setCart] = useState<{[key: number]: number}>({})
-  const [isCartVisible, setIsCartVisible] = useState(true)
+  const [animatingItems, setAnimatingItems] = useState<{ [key: number]: boolean }>({})
   const whatsappNumber = '27684535380' // West Park Services WhatsApp business number
 
   const addToCart = (id: number) => {
@@ -74,6 +74,16 @@ export default function CakePreorderPage() {
       ...prev,
       [id]: (prev[id] || 0) + 1
     }))
+    setAnimatingItems(prev => ({
+      ...prev,
+      [id]: true
+    }))
+    setTimeout(() => {
+      setAnimatingItems(prev => ({
+        ...prev,
+        [id]: false
+      }))
+    }, 500)
   }
 
   const removeFromCart = (id: number) => {
@@ -89,10 +99,6 @@ export default function CakePreorderPage() {
     })
   }
 
-  const getTotalItems = () => {
-    return Object.values(cart).reduce((sum, count) => sum + count, 0)
-  }
-
   const getTotalPrice = () => {
     return Object.entries(cart).reduce((sum, [id, count]) => {
       const cake = cakes.find(c => c.id === parseInt(id))
@@ -101,165 +107,177 @@ export default function CakePreorderPage() {
   }
 
   const handleWhatsAppOrder = () => {
-    if (getTotalItems() === 0) {
-      alert('Please add items to your cart first')
-      return
-    }
+    const orderSummary = Object.entries(cart)
+      .map(([id, count]) => {
+        const cake = cakes.find(c => c.id === parseInt(id))
+        if (!cake) return ''
+        const total = cake.price * count
+        return `• ${cake.name} (${count}x) - R${total}`
+      })
+      .filter(Boolean)
+      .join('\n')
 
-    const orderMessage = `Hi! I would like to place the following order:\n\n${
-      Object.entries(cart)
-        .map(([id, count]) => {
-          const cake = cakes.find(c => c.id === parseInt(id))
-          return `${count}x ${cake?.name} (R${(cake?.price || 0) * count})`
-        })
-        .join('\n')
-    }\n\nTotal: R${getTotalPrice()}`
-
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`
+    const message = `Hi! I have a question about your bakery products.\n\nMy Order:\n${orderSummary}\n\nTotal: R${getTotalPrice()}`
+    const encodedMessage = encodeURIComponent(message)
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
     window.open(whatsappUrl, '_blank')
   }
 
   return (
     <div className="min-h-screen bg-gold p-8 font-sans relative overflow-hidden">
       {/* 2D Diamonds Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(80)].map((_, i) => (
+      <div className="fixed inset-0 -z-10 grid grid-cols-3 gap-4 p-8 opacity-10">
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute diamond"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.6,
-              transform: `rotate(45deg) scale(${0.5 + Math.random() * 0.5})`,
-              zIndex: Math.floor(Math.random() * 3)
-            }}
+            className={`w-full h-32 bg-black transform rotate-45 animate-shine-${i % 3}`}
           />
         ))}
       </div>
 
-      <div className="flex justify-between items-center mb-8 relative z-10">
-        <Link href="/" className="inline-block">
-          <Button className="bg-orange-500 text-white hover:bg-orange-600 font-bold py-2 px-4 rounded">
-            ← Back to Home
-          </Button>
-        </Link>
-        <Link 
-          href="https://wa.me/27684535380?text=Hi!%20I%20have%20a%20question%20about%20your%20bakery%20products."
-          target="_blank"
-          className="inline-block"
-        >
-          <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-2 px-4 rounded">
-            Contact Us 💬
-          </Button>
-        </Link>
-      </div>
+      {/* Cart Panel - Now always visible */}
+      <div className={`fixed top-20 right-4 bg-gradient-to-br from-orange-50 to-orange-100 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-40 transform transition-transform duration-300 rounded-lg overflow-hidden`}>
+        <div className="w-72 flex flex-col">
+          <div className="p-4 border-b-2 border-black bg-white">
+            <h2 className="text-xl font-bold">Your Cart 🛒</h2>
+          </div>
 
-      {/* Cart Toggle Button - Fixed */}
-      <button
-        onClick={() => setIsCartVisible(!isCartVisible)}
-        className="fixed bottom-4 right-4 z-50 bg-white p-3 border-4 border-black rounded-full shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
-      >
-        {isCartVisible ? '🛒 ✕' : '🛒'}
-      </button>
-
-      {/* Cart Summary - Fixed position */}
-      <div className={`fixed bottom-20 right-4 bg-white p-4 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] rounded-lg z-50 transition-all duration-300 ${
-        isCartVisible 
-          ? 'translate-x-0 opacity-100' 
-          : 'translate-x-[150%] opacity-0'
-      }`}>
-        <h3 className="text-xl font-bold mb-2">Cart Summary 🛒</h3>
-        
-        {getTotalItems() === 0 ? (
-          <p className="text-gray-500 italic mb-3">Your cart is empty</p>
-        ) : (
-          <div className="mb-3">
-            <div className="max-h-48 overflow-y-auto mb-3">
-              {Object.entries(cart).map(([id, count]) => {
-                const cake = cakes.find(c => c.id === parseInt(id))
-                if (!cake) return null
+          {/* Cart Items */}
+          <div className="p-4 overflow-y-auto custom-scrollbar" style={{ maxHeight: '400px' }}>
+            {Object.keys(cart).length === 0 ? (
+              <div className="text-center py-6">
+                <p className="text-gray-500">Your cart is empty</p>
+                <p className="text-sm text-gray-400 mt-1">Add some treats!</p>
+              </div>
+            ) : (
+              Object.keys(cart).map((id) => {
+                const cakeId = parseInt(id)
+                const cake = cakes.find(c => c.id === cakeId)
+                if (!cake || cart[cakeId] === 0) return null
                 return (
-                  <div key={id} className="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
-                    <div>
-                      <p className="font-medium">{cake.name}</p>
-                      <p className="text-sm text-gray-500">Quantity: {count}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold">R{(cake.price || 0) * count}</p>
-                      <p className="text-sm text-gray-500">R{cake.price || 0} each</p>
+                  <div 
+                    key={id} 
+                    className="mb-3 p-2 bg-white border-2 border-black transform hover:rotate-1 transition-transform shadow-[2px_2px_0_0_rgba(0,0,0,1)] rounded-lg"
+                  >
+                    <div className="flex items-start space-x-2">
+                      <div className="relative w-12 h-12 flex-shrink-0">
+                        <Image
+                          src={cake.image}
+                          alt={cake.name}
+                          fill
+                          className="rounded-md object-cover border border-black"
+                        />
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="font-bold text-sm truncate">{cake.name}</h3>
+                        <div className="flex justify-between items-center mt-1">
+                          <p className="text-sm">R{cake.price} × {cart[cakeId]}</p>
+                          <button
+                            onClick={() => removeFromCart(cakeId)}
+                            className="bg-white border-2 border-black w-6 h-6 flex items-center justify-center hover:bg-red-100 transform hover:-rotate-3 transition-all shadow-[1px_1px_0_0_rgba(0,0,0,1)] rounded-md"
+                          >
+                            −
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )
-              })}
-            </div>
-            <div className="border-t border-black pt-2">
-              <div className="flex justify-between items-center mb-1">
-                <span className="font-medium">Subtotal:</span>
-                <span className="font-bold">R{getTotalPrice()}</span>
-              </div>
-              <div className="flex justify-between items-center mb-3">
-                <span className="font-medium">Total Items:</span>
-                <span className="font-bold">{getTotalItems()}</span>
-              </div>
-            </div>
+              })
+            )}
           </div>
-        )}
-        
-        <Button 
-          onClick={handleWhatsAppOrder}
-          className="w-full bg-green-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded"
-          disabled={getTotalItems() === 0}
-        >
-          Order on WhatsApp 📱
-        </Button>
+
+          {/* Cart Footer */}
+          <div className="p-4 border-t-2 border-black bg-white">
+            <div className="flex justify-between items-center mb-3">
+              <span className="font-bold">Total</span>
+              <span className="font-bold">R{getTotalPrice()}</span>
+            </div>
+            <button
+              onClick={handleWhatsAppOrder}
+              disabled={Object.keys(cart).length === 0}
+              className="w-full bg-white border-2 border-black py-2 px-3 font-bold transform hover:rotate-1 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[6px_6px_0_0_rgba(0,0,0,1)] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm"
+            >
+              Order via WhatsApp 📱
+            </button>
+          </div>
+        </div>
       </div>
 
-      <main className="max-w-6xl mx-auto relative z-10">
+      <main className="max-w-[calc(100%-20rem)] mr-80 ml-8">
+        <div className="flex justify-between items-center mb-8">
+          <Link href="/">
+            <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-2 px-4 rounded">
+              ← Back to Home
+            </Button>
+          </Link>
+        </div>
+
         <h1 className="text-6xl font-bold mb-8 text-black transform -rotate-2 bg-white p-4 inline-block shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
           Bakery Pre-orders 🧁
         </h1>
         
-        <div className="bg-white p-6 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cakes.map((cake) => (
-              <div key={cake.id} className="p-4 border-2 border-black rounded-lg hover:shadow-lg transition-shadow">
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={cake.image}
-                    alt={cake.name}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="rounded-lg"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{cake.name}</h3>
-                <p className="text-gray-600 mb-2 h-20">{cake.description}</p>
-                <p className="text-lg font-bold mb-3">R{cake.price}</p>
-                
-                {/* Item Counter */}
-                <div className="flex items-center justify-between mb-3">
-                  <Button 
-                    onClick={() => removeFromCart(cake.id)}
-                    className="bg-orange-500 text-white hover:bg-orange-600 font-bold px-3 py-1 rounded"
-                    disabled={!cart[cake.id]}
-                  >
-                    -
-                  </Button>
-                  <span className="font-bold">{cart[cake.id] || 0}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-8">
+          {cakes.map((cake) => (
+            <div key={cake.id} className="bg-white p-6 transform rotate-2 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
+              <div className="relative h-48 mb-4">
+                <Image
+                  src={cake.image}
+                  alt={cake.name}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-lg"
+                />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{cake.name}</h3>
+              <p className="text-gray-600 mb-2 h-20">{cake.description}</p>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-bold">R{cake.price}</span>
+                <div className="flex items-center space-x-2">
+                  {cart[cake.id] > 0 && (
+                    <span className="font-bold">{cart[cake.id]}</span>
+                  )}
                   <Button 
                     onClick={() => addToCart(cake.id)}
-                    className="bg-orange-500 text-white hover:bg-orange-600 font-bold px-3 py-1 rounded"
+                    className="relative btn-gold font-bold py-1 px-3 border-4 border-black"
                   >
                     +
+                    {animatingItems[cake.id] && (
+                      <svg
+                        className="check-mark animate absolute -top-4 -right-4 w-8 h-8"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="black"
+                        strokeWidth="3"
+                      >
+                        <path d="M4 12l5 5L20 7" />
+                      </svg>
+                    )}
                   </Button>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </main>
+
+      {/* Add custom scrollbar styles */}
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #000;
+          border: 2px solid #fff;
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #333;
+        }
+      `}</style>
     </div>
   )
 }

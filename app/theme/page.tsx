@@ -67,7 +67,7 @@ export default function ThemeCustomizer() {
 
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-6xl font-bold text-black transform -rotate-2 bg-white p-4 inline-block animate-slide-in border-4 border-black shadow-brutal">
+          <h1 className="text-6xl font-bold text-black transform -rotate-2 bg-white p-4 inline-block border-4 border-black shadow-brutal">
             Customize Theme
           </h1>
           <Link href="/" className="btn-gold font-bold py-2 px-4 border-4 border-black transform rotate-2 shadow-brutal hover:shadow-brutal-hover transition-transform hover:-translate-y-1">
