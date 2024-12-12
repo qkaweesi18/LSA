@@ -44,7 +44,7 @@ const cakes = [
   {
     id: 6,
     name: "Dark Chocolate Chunk Raspberry Muffins",
-    description: "Decadent chocolate muffins with fresh raspberries and dark chocolate chunks",
+    description: "Decadent dark chocolate muffins filled with frozen raspberries, dark chocolate chunks, and dipped in a rich chocolate ganache topping.",
     price: 165,
     image: "/muffins/Dark Chocolate Chunk Raspberry Muffins.jpg"
   },
@@ -149,7 +149,7 @@ export default function CakePreorderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gold p-4 sm:p-8 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-gold p-4 sm:p-8 relative overflow-hidden">
       {/* 2D Diamonds Background */}
       <div className="fixed inset-0 -z-10 grid grid-cols-3 gap-4 p-8 opacity-10">
         {[...Array(12)].map((_, i) => (

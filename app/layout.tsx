@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 const inconsolata = Inconsolata({
   subsets: ['latin'],
-  variable: '--font-inconsolata',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -32,11 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} font-inconsolata antialiased`}
-      >
-        {children}
-      </body>
+      <body className={inconsolata.className}>{children}</body>
     </html>
   );
 }
