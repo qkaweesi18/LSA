@@ -4,7 +4,11 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --primary-color: #FFD700;  /* Default gold color */
+  --button-bg: #FFD700;
+  --button-hover: #FFC700;
+  --button-text: #000000;
+  --page-bg: #FFFFFF;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --gradient-gold: linear-gradient(135deg, #ff4e00, #ec9f05);
@@ -13,7 +17,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(0, 0, 0);
 }
 
 .bg-gold {
@@ -23,11 +27,13 @@ body {
 
 .btn-gold {
   background: var(--gradient-button);
+  color: var(--button-text);
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-gold:hover {
+  background-color: var(--button-hover);
   transform: translateY(-2px);
   box-shadow: 8px 8px 0 0 rgba(0,0,0,1);
 }

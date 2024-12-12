@@ -28,17 +28,12 @@ export default function Home() {
                 Customize Theme
               </button>
             </Link>
-            <Link href="/login" passHref>
-              <button className="btn-gold font-bold py-2 px-4 border-4 border-black transform -rotate-2">
-                Login
-              </button>
-            </Link>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <ServiceCard
-            title="Package Delivery & Collection"
+            title="Package Delivery & Collection 🚐"
             description="We deliver and collect packages in the West Park area."
             buttonText="Order"
             href="/location-select"
@@ -50,7 +45,7 @@ export default function Home() {
             href="/cake-preorder"
           />
           <ServiceCard
-            title="Password Recovery"
+            title="Password Recovery 🔒"
             description="We help you recover forgotten passwords on Android."
             buttonText="Learn More"
             href="/password-recovery"
