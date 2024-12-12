@@ -224,7 +224,7 @@ export default function CakePreorderPage() {
         
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 px-1 md:px-4 mb-24">
           {cakes.map((cake) => (
-            <div key={cake.id} className="bg-white p-2 md:p-6 transform rotate-1 hover:rotate-0 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-2 md:border-4 border-black w-full">
+            <div key={cake.id} className="bg-white p-2 md:p-6 transform rotate-1 hover:rotate-0 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-2 md:border-4 border-black w-full flex flex-col">
               <div className="relative h-32 md:h-56 mb-2 md:mb-4">
                 <Image
                   src={cake.image}
@@ -235,8 +235,8 @@ export default function CakePreorderPage() {
                 />
               </div>
               <h3 className="text-base md:text-xl font-bold mb-1 md:mb-2">{cake.name}</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3">{cake.description}</p>
-              <div className="flex justify-between items-center">
+              <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3 flex-grow">{cake.description}</p>
+              <div className="flex justify-between items-center mt-auto">
                 <span className="text-base md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
                   {cart[cake.id] > 0 && (
@@ -244,12 +244,12 @@ export default function CakePreorderPage() {
                   )}
                   <Button 
                     onClick={() => addToCart(cake.id)}
-                    className="relative btn-gold font-bold py-1 px-3 border-4 border-black"
+                    className="relative btn-gold font-bold py-1 px-3 border-2 md:border-4 border-black"
                   >
                     +
                     {animatingItems[cake.id] && (
                       <svg
-                        className="check-mark animate absolute -top-4 -right-4 w-8 h-8"
+                        className="check-mark animate absolute -top-4 -right-4 w-6 md:w-8 h-6 md:h-8"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="black"
