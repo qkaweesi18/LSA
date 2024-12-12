@@ -106,10 +106,6 @@ export default function CakePreorderPage() {
     }, 0)
   }
 
-  const getTotalItems = () => {
-    return Object.values(cart).reduce((sum, count) => sum + count, 0)
-  }
-
   const handleWhatsAppOrder = () => {
     const orderSummary = Object.entries(cart)
       .map(([id, count]) => {
@@ -139,10 +135,89 @@ export default function CakePreorderPage() {
         ))}
       </div>
 
-      {/* Main content */}
-      <div className="p-4 md:p-6 pb-32 md:pb-6">
-        {/* Products grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      {/* Cart Panel - Mobile Optimized */}
+      <div className={`fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:top-20 md:right-4 bg-gradient-to-br from-orange-50 to-orange-100 border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden`}>
+        <div className="w-full md:w-72 flex flex-col">
+          <div className="p-3 md:p-4 border-b-2 border-black bg-white">
+            <h2 className="text-xl font-bold">Your Cart 🛒</h2>
+          </div>
+
+          {/* Cart Items */}
+          <div className="p-3 md:p-4 overflow-y-auto custom-scrollbar h-[150px] md:h-[400px]">
+            {Object.keys(cart).length === 0 ? (
+              <div className="text-center py-4 md:py-6">
+                <p className="text-gray-500">Your cart is empty</p>
+                <p className="text-sm text-gray-400 mt-1">Add some treats!</p>
+              </div>
+            ) : (
+              Object.keys(cart).map((id) => {
+                const cakeId = parseInt(id)
+                const cake = cakes.find(c => c.id === cakeId)
+                if (!cake || cart[cakeId] === 0) return null
+                return (
+                  <div 
+                    key={id} 
+                    className="mb-2 md:mb-3 p-2 bg-white border-2 border-black transform hover:rotate-1 transition-transform shadow-[2px_2px_0_0_rgba(0,0,0,1)] rounded-lg"
+                  >
+                    <div className="flex items-start space-x-2">
+                      <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
+                        <Image
+                          src={cake.image}
+                          alt={cake.name}
+                          fill
+                          className="rounded-md object-cover border border-black"
+                        />
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="font-bold text-sm truncate">{cake.name}</h3>
+                        <div className="flex justify-between items-center mt-1">
+                          <p className="text-sm">R{cake.price} × {cart[cakeId]}</p>
+                          <button
+                            onClick={() => removeFromCart(cakeId)}
+                            className="bg-white border-2 border-black w-6 h-6 flex items-center justify-center hover:bg-red-100 transform hover:-rotate-3 transition-all shadow-[1px_1px_0_0_rgba(0,0,0,1)] rounded-md"
+                          >
+                            −
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            )}
+          </div>
+
+          {/* Cart Footer */}
+          <div className="p-3 md:p-4 border-t-2 border-black bg-white">
+            <div className="flex justify-between items-center mb-2 md:mb-3">
+              <span className="font-bold">Total</span>
+              <span className="font-bold">R{getTotalPrice()}</span>
+            </div>
+            <button
+              onClick={handleWhatsAppOrder}
+              disabled={Object.keys(cart).length === 0}
+              className="w-full bg-white border-2 border-black py-2 px-3 font-bold transform hover:rotate-1 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[6px_6px_0_0_rgba(0,0,0,1)] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm"
+            >
+              Order via WhatsApp 📱
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <main className="pb-48 md:pb-8 md:max-w-[calc(100%-20rem)] md:mr-80 md:ml-8">
+        <div className="flex justify-between items-center mb-6 md:mb-8">
+          <Link href="/">
+            <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-1.5 md:py-2 px-3 md:px-4 text-sm md:text-base rounded">
+              ← Back to Home
+            </Button>
+          </Link>
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 md:mb-8 text-black transform -rotate-2 bg-white p-3 md:p-4 inline-block shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+          Bakery Pre-orders 🧁
+        </h1>
+        
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {cakes.map((cake) => (
             <div key={cake.id} className="bg-white p-4 md:p-6 transform rotate-2 hover:rotate-0 transition-transform shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
               <div className="relative h-36 md:h-48 mb-3 md:mb-4">
@@ -184,76 +259,7 @@ export default function CakePreorderPage() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Cart panel */}
-      <div className="fixed bottom-0 left-0 right-0 md:right-0 md:left-auto md:top-0 md:w-96 bg-white shadow-lg md:h-screen z-50">
-        {/* Cart header */}
-        <div className="p-3 md:p-4 border-b flex justify-between items-center">
-          <h2 className="text-lg md:text-xl font-bold">Your Cart</h2>
-          <span className="text-sm text-gray-500">{getTotalItems()} items</span>
-        </div>
-
-        {/* Cart Items */}
-        <div className="p-3 md:p-4 overflow-y-auto custom-scrollbar h-[150px] md:h-[400px]">
-          {Object.keys(cart).length === 0 ? (
-            <div className="text-center py-4 md:py-6">
-              <p className="text-gray-500">Your cart is empty</p>
-              <p className="text-sm text-gray-400 mt-1">Add some treats!</p>
-            </div>
-          ) : (
-            Object.keys(cart).map((id) => {
-              const cakeId = parseInt(id)
-              const cake = cakes.find(c => c.id === cakeId)
-              if (!cake || cart[cakeId] === 0) return null
-              return (
-                <div 
-                  key={id} 
-                  className="mb-2 md:mb-3 p-2 bg-white border-2 border-black transform hover:rotate-1 transition-transform shadow-[2px_2px_0_0_rgba(0,0,0,1)] rounded-lg"
-                >
-                  <div className="flex items-start space-x-2">
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
-                      <Image
-                        src={cake.image}
-                        alt={cake.name}
-                        fill
-                        className="rounded-md object-cover border border-black"
-                      />
-                    </div>
-                    <div className="flex-grow min-w-0">
-                      <h3 className="font-bold text-sm truncate">{cake.name}</h3>
-                      <div className="flex justify-between items-center mt-1">
-                        <p className="text-sm">R{cake.price} × {cart[cakeId]}</p>
-                        <button
-                          onClick={() => removeFromCart(cakeId)}
-                          className="bg-white border-2 border-black w-6 h-6 flex items-center justify-center hover:bg-red-100 transform hover:-rotate-3 transition-all shadow-[1px_1px_0_0_rgba(0,0,0,1)] rounded-md"
-                        >
-                          −
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-          )}
-        </div>
-
-        {/* Cart Footer */}
-        <div className="p-3 md:p-4 border-t-2 border-black bg-white">
-          <div className="flex justify-between items-center mb-2 md:mb-3">
-            <span className="font-bold">Total</span>
-            <span className="font-bold">R{getTotalPrice()}</span>
-          </div>
-          <button
-            onClick={handleWhatsAppOrder}
-            disabled={Object.keys(cart).length === 0}
-            className="w-full bg-white border-2 border-black py-2 px-3 font-bold transform hover:rotate-1 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[6px_6px_0_0_rgba(0,0,0,1)] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm"
-          >
-            Order via WhatsApp 📱
-          </button>
-        </div>
-      </div>
+      </main>
 
       {/* Add custom scrollbar styles */}
       <style jsx global>{`
