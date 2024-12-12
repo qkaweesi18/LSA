@@ -245,8 +245,8 @@ export default function CakePreorderPage() {
         
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 px-1 md:px-4 mb-24">
           {cakes.map((cake) => (
-            <div key={cake.id} className="bg-white p-2 md:p-6 transform rotate-1 hover:rotate-0 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-2 md:border-4 border-black w-full flex flex-col">
-              <div className="relative h-32 md:h-56 mb-2 md:mb-4">
+            <div key={cake.id} className="bg-white p-2 md:p-6 transform rotate-1 hover:rotate-0 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-2 md:border-4 border-black w-full flex flex-col min-h-[300px] md:min-h-[400px]">
+              <div className="relative h-28 md:h-56 mb-2 md:mb-4">
                 <Image
                   src={cake.image}
                   alt={cake.name}
@@ -255,10 +255,10 @@ export default function CakePreorderPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              <h3 className="text-base md:text-xl font-bold mb-1 md:mb-2 line-clamp-2">{cake.name}</h3>
-              <p className="text-xs md:text-base text-gray-600 mb-2 md:mb-3 flex-grow line-clamp-3">{cake.description}</p>
-              <div className="flex justify-between items-center mt-auto">
-                <span className="text-base md:text-lg font-bold">R{cake.price}</span>
+              <h3 className="text-[0.8rem] md:text-xl font-bold mb-1 md:mb-2 whitespace-normal">{cake.name}</h3>
+              <p className="text-[0.7rem] md:text-base text-gray-600 mb-2 md:mb-3 whitespace-normal">{cake.description}</p>
+              <div className="flex justify-between items-center mt-auto pt-2">
+                <span className="text-sm md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
                   {cart[cake.id] > 0 && (
                     <span className="font-bold">{cart[cake.id]}</span>
