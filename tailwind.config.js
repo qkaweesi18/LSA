@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#FFD700',
+        gold: '#FFA500',
       },
       boxShadow: {
         'brutal': '5px 5px 0 0 rgba(0,0,0,1)',
         'brutal-hover': '8px 8px 0 0 rgba(0,0,0,1)',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
+        sans: ['var(--font-inconsolata)', 'Inconsolata', 'monospace'],
         mono: ['var(--font-geist-mono)'],
         inconsolata: ['var(--font-inconsolata)'],
       },
