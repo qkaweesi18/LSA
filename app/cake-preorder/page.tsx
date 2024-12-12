@@ -8,59 +8,80 @@ import Image from 'next/image'
 const cakes = [
   {
     id: 1,
-    name: 'Apple Oatmeal Quick Bread',
+    name: "Apple Oatmeal Quick Bread",
+    description: "A hearty and wholesome quick bread made with fresh apples and oatmeal",
     price: 150,
-    image: '/muffins/Apple Oatmeal Quick Bread.jpg',
-    description: 'A hearty and wholesome quick bread made with fresh apples and nutritious oatmeal'
+    image: "/muffins/Apple Oatmeal Quick Bread.jpg"
   },
   {
     id: 2,
-    name: 'Blackberry Corn Muffins',
+    name: "Blackberry Corn Muffins",
+    description: "Sweet corn muffins studded with juicy blackberries for a delightful twist",
     price: 130,
-    image: '/muffins/Blackberry Corn Muffins.jpg',
-    description: 'Sweet corn muffins studded with juicy blackberries for a perfect breakfast treat'
+    image: "/muffins/Blackberry Corn Muffins.jpg"
   },
   {
     id: 3,
-    name: 'Carrot Cake Breakfast Cookies',
+    name: "Carrot Cake Breakfast Cookies",
+    description: "Healthy breakfast cookies packed with carrots, spices, and wholesome ingredients",
     price: 170,
-    image: '/muffins/Carrot Cake Breakfast Cookies.jpg',
-    description: 'Healthy breakfast cookies packed with carrots, spices, and wholesome ingredients'
+    image: "/muffins/Carrot Cake Breakfast Cookies.jpg"
   },
   {
     id: 4,
-    name: 'Easy Blueberry Muffins',
-    price: 160,
-    image: '/muffins/Easy Blueberry Muffins.jpg',
-    description: 'Classic blueberry muffins bursting with fresh berries in every bite'
+    name: "Banana Chip Muffins",
+    description: "Moist banana muffins loaded with chocolate chips, perfect with your morning coffee",
+    price: 145,
+    image: "/muffins/Banana Chip Muffins.jpg"
   },
   {
     id: 5,
-    name: 'Easy Pumpkin Bread',
-    price: 140,
-    image: '/muffins/Easy Pumpkin Bread.jpg',
-    description: 'Moist and flavorful pumpkin bread with warm autumn spices'
+    name: "Blueberry Loaf Cake with Almond Streusel",
+    description: "Rich blueberry cake topped with a crunchy almond streusel for extra texture",
+    price: 175,
+    image: "/muffins/Blueberry Loaf Cake with Almond Streusel.jpg"
   },
   {
     id: 6,
-    name: 'Extra Moist Banana Bread',
-    price: 155,
-    image: '/muffins/Extra Moist Banana Bread.jpg',
-    description: 'Super moist banana bread made with ripe bananas for maximum flavor'
+    name: "Dark Chocolate Chunk Raspberry Muffins",
+    description: "Decadent chocolate muffins with fresh raspberries and dark chocolate chunks",
+    price: 165,
+    image: "/muffins/Dark Chocolate Chunk Raspberry Muffins.jpg"
   },
   {
     id: 7,
-    name: 'Pumpkin Chocolate Chip Muffins',
-    price: 180,
-    image: '/muffins/Pumpkin Chocolate Chip Muffins with Coffee Glaze.jpg',
-    description: 'Pumpkin muffins loaded with chocolate chips and topped with a rich coffee glaze'
+    name: "Easy Blueberry Muffins",
+    description: "Classic blueberry muffins bursting with fresh berries in every bite",
+    price: 140,
+    image: "/muffins/Easy Blueberry Muffins.jpg"
   },
   {
     id: 8,
-    name: 'Whole Wheat Apple Cinnamon Muffins',
+    name: "Easy Pumpkin Bread",
+    description: "Moist and flavorful pumpkin bread with a delightful crumb topping",
+    price: 155,
+    image: "/muffins/Easy Pumpkin Bread.jpg"
+  },
+  {
+    id: 9,
+    name: "Extra Moist Banana Bread",
+    description: "Rich and extra moist banana bread perfect for breakfast or snacking",
+    price: 160,
+    image: "/muffins/Extra Moist Banana Bread.jpg"
+  },
+  {
+    id: 10,
+    name: "Pumpkin Chocolate Chip Muffins",
+    description: "Pumpkin muffins loaded with chocolate chips and topped with coffee glaze",
+    price: 165,
+    image: "/muffins/Pumpkin Chocolate Chip Muffins with Coffee Glaze.jpg"
+  },
+  {
+    id: 11,
+    name: "Whole Wheat Apple Cinnamon Muffins",
+    description: "Healthy whole wheat muffins with fresh apples and warm cinnamon spice",
     price: 145,
-    image: '/muffins/Whole Wheat Apple Cinnamon Muffins.jpg',
-    description: 'Healthy whole wheat muffins with fresh apples and warm cinnamon spice'
+    image: "/muffins/Whole Wheat Apple Cinnamon Muffins.jpg"
   }
 ]
 
