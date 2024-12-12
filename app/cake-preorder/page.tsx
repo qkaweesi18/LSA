@@ -140,7 +140,7 @@ export default function CakePreorderPage() {
       </div>
 
       {/* Cart Panel - Mobile Optimized */}
-      <div className={`fixed bottom-0 left-0 right-0 md:right-auto md:left-auto md:top-0 md:w-[400px] bg-white border-t-4 md:border-l-4 border-black z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden`}>
+      <div className={`fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:top-20 md:right-4 bg-white border-t-4 md:border-4 border-black z-40 transform transition-transform duration-300 rounded-t-lg md:rounded-lg overflow-hidden shadow-[8px_8px_0_0_rgba(0,0,0,1)]`}>
         <div className="w-full md:w-72 flex flex-col">
           <div className="p-2 md:p-4 border-b-2 md:border-b-4 border-black bg-white">
             <h2 className="text-lg md:text-xl font-bold">Your Cart 🛒</h2>
