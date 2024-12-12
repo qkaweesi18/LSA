@@ -20,7 +20,7 @@ export default function Home() {
       <main className="max-w-4xl mx-auto relative z-10">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-6xl font-bold text-black transform -rotate-2 bg-white p-4 inline-block shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
-            West Park Services
+            LSA
           </h1>
           <div className="space-x-4">
             <Link href="/theme" passHref>
