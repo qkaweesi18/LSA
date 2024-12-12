@@ -195,7 +195,7 @@ export default function CakePreorderPage() {
                         />
                       </div>
                       <div className="flex-grow min-w-0">
-                        <h3 className="font-bold text-sm truncate">{cake.name}</h3>
+                        <h3 className="font-bold text-sm truncate line-clamp-2">{cake.name}</h3>
                         <div className="flex justify-between items-center mt-1">
                           <p className="text-sm">R{cake.price} × {cart[cakeId]}</p>
                           <button
@@ -255,8 +255,8 @@ export default function CakePreorderPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              <h3 className="text-base md:text-xl font-bold mb-1 md:mb-2">{cake.name}</h3>
-              <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3 flex-grow">{cake.description}</p>
+              <h3 className="text-base md:text-xl font-bold mb-1 md:mb-2 line-clamp-2">{cake.name}</h3>
+              <p className="text-xs md:text-base text-gray-600 mb-2 md:mb-3 flex-grow line-clamp-3">{cake.description}</p>
               <div className="flex justify-between items-center mt-auto">
                 <span className="text-base md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
