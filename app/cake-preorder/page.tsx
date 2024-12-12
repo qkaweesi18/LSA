@@ -204,7 +204,7 @@ export default function CakePreorderPage() {
         </div>
       </div>
 
-      <main className="pb-48 md:pb-8 md:max-w-[calc(100%-20rem)] md:mr-80 md:ml-8">
+      <main className="pb-32 md:pb-8 md:max-w-[calc(100%-20rem)] md:mr-80 md:ml-8">
         <div className="flex justify-between items-center mb-6 md:mb-8">
           <Link href="/">
             <Button className="bg-purple-500 text-white hover:bg-purple-600 font-bold py-1.5 md:py-2 px-3 md:px-4 text-sm md:text-base rounded">
@@ -217,7 +217,7 @@ export default function CakePreorderPage() {
           Bakery Pre-orders 🧁
         </h1>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {cakes.map((cake) => (
             <div key={cake.id} className="bg-white p-4 md:p-6 transform rotate-2 hover:rotate-0 transition-transform shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
               <div className="relative h-36 md:h-48 mb-3 md:mb-4">
@@ -230,7 +230,7 @@ export default function CakePreorderPage() {
                 />
               </div>
               <h3 className="text-lg md:text-xl font-bold mb-2">{cake.name}</h3>
-              <p className="text-gray-600 mb-2 h-16 md:h-20 text-sm md:text-base">{cake.description}</p>
+              <p className="text-gray-600 mb-2 h-16 md:h-20 text-sm md:text-base line-clamp-3">{cake.description}</p>
               <div className="flex justify-between items-center">
                 <span className="text-base md:text-lg font-bold">R{cake.price}</span>
                 <div className="flex items-center space-x-2">
