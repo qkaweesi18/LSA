@@ -10,7 +10,7 @@ const inconsolata = Inconsolata({
 
 export const metadata: Metadata = {
   title: 'LSA',
-  description: 'Location Selection App',
+  description: 'Local Services App'
 }
 
 export default function RootLayout({

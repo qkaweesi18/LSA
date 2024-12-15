@@ -9,35 +9,35 @@ const cakes = [
   {
     id: 1,
     name: "Apple Oatmeal Quick Bread",
-    description: "A hearty and wholesome quick bread made with fresh apples and oatmeal",
+    description: "A simple apple quick bread, prepared with whole wheat pastry flour, and studded with rolled oats, apple pieces, and toasted walnuts. ",
     price: 150,
     image: "/muffins/Apple Oatmeal Quick Bread.jpg"
   },
   {
     id: 2,
     name: "Blackberry Corn Muffins",
-    description: "Sweet corn muffins studded with juicy blackberries for a delightful twist",
+    description: "Fluffy homemade buttermilk corn muffins infused with lime zest and studded with fresh blackberries.",
     price: 130,
     image: "/muffins/Blackberry Corn Muffins.jpg"
   },
   {
     id: 3,
     name: "Carrot Cake Breakfast Cookies",
-    description: "Healthy breakfast cookies packed with carrots, spices, and wholesome ingredients",
+    description: "A delicious wholesome carrot cake breakfast cookie that is made with whole grains, naturally sweetened, and packed with healthy fats and fiber. ",
     price: 170,
     image: "/muffins/Carrot Cake Breakfast Cookies.jpg"
   },
   {
     id: 4,
     name: "Banana Chip Muffins",
-    description: "Moist banana muffins loaded with chocolate chips, perfect with your morning coffee",
+    description: "These Banana Chip Muffins are fluffy and delicate in flavor, with just the right amount of texture from the walnuts and decadence from chocolate chips. They taste great as a slightly more decadent breakfast or snack!",
     price: 145,
     image: "/muffins/Banana Chip Muffins.jpg"
   },
   {
     id: 5,
-    name: "Blueberry Loaf Cake with Almond Streusel",
-    description: "Rich blueberry cake topped with a crunchy almond streusel for extra texture",
+    name: "1 Blueberry Loaf Cake with Almond Streusel",
+    description: "These Banana Chip Muffins are fluffy and delicate in flavor, with just the right amount of texture from the walnuts and decadence from chocolate chips. They taste great as a slightly more decadent breakfast or snack!",
     price: 175,
     image: "/muffins/Blueberry Loaf Cake with Almond Streusel.jpg"
   },
@@ -51,14 +51,14 @@ const cakes = [
   {
     id: 7,
     name: "Easy Blueberry Muffins",
-    description: "Classic blueberry muffins bursting with fresh berries in every bite",
+    description: "These whole wheat blueberry muffins recipe gets its fluffy, moist texture from buttermilk, frozen wild blueberries, and coconut oil. ",
     price: 140,
     image: "/muffins/Easy Blueberry Muffins.jpg"
   },
   {
     id: 8,
     name: "Easy Pumpkin Bread",
-    description: "Moist and flavorful pumpkin bread with a delightful crumb topping",
+    description: "If you're looking for an easy moist special bread to enjoy all season, this pumpkin bread is for you. It's a classic pumpkin bread with fall spices and a fresh orange twist!",
     price: 155,
     image: "/muffins/Easy Pumpkin Bread.jpg"
   },
@@ -72,14 +72,14 @@ const cakes = [
   {
     id: 10,
     name: "Pumpkin Chocolate Chip Muffins",
-    description: "Pumpkin muffins loaded with chocolate chips and topped with coffee glaze",
+    description: "Pumpkin Chocolate Chip Muffins infused with espresso powder and topped with a decadent coffee powdered sugar glaze. This pumpkin muffin is a family favorite!",
     price: 165,
     image: "/muffins/Pumpkin Chocolate Chip Muffins with Coffee Glaze.jpg"
   },
   {
     id: 11,
     name: "Whole Wheat Apple Cinnamon Muffins",
-    description: "Healthy whole wheat muffins with fresh apples and warm cinnamon spice",
+    description: "Apple Cinnamon Muffins lightly sweetened with coconut sugar and studded with chopped pecans.  This easy whole wheat muffin recipe gets its light and fluffy texture from buttermilk, grated apple, and avocado oil.",
     price: 145,
     image: "/muffins/Whole Wheat Apple Cinnamon Muffins.jpg"
   }
