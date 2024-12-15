@@ -55,9 +55,14 @@ export default function Home() {
           />
           <div className="bg-white p-6 transform rotate-3 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
             <h2 className="text-2xl font-bold mb-4">Contact Us 📞</h2>
-            <Link href="/contact" passHref>
+            <Link 
+              href={`https://wa.me/27684535380?text=${encodeURIComponent('Hello, I have a question about the services you offer')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+            >
               <button className="w-full btn-gold hover:bg-blue-100 font-bold py-2 px-4 border-4 border-black">
-                Get in Touch
+                Contact Me
               </button>
             </Link>
           </div>
