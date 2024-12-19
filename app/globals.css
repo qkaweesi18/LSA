@@ -377,6 +377,65 @@ body {
   transform-style: preserve-3d;
 }
 
+/* Performance Optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.min-h-screen {
+  contain: content;
+}
+
+/* Diamond Optimizations */
+.diamond {
+  position: fixed;
+  background: black;
+  opacity: 0.1;
+  transform: rotate(45deg) translateZ(0);
+  -webkit-transform: rotate(45deg) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  contain: layout style paint;
+  pointer-events: none;
+}
+
+/* Disable all animations on mobile */
+@media (max-width: 768px) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .diamond {
+    contain: strict;
+    will-change: auto;
+  }
+}
+
+/* Desktop-only animations */
+@media (min-width: 769px) {
+  .diamond-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .diamond-float-reverse {
+    animation: float 8s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: rotate(45deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(45deg) translate3d(0, -20px, 0);
+  }
+}
+
 /* Reduce animations on mobile */
 @media (max-width: 768px) {
   .diamond {

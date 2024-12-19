@@ -5,39 +5,46 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gold p-8 font-sans relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Large diamonds */}
-        {[...Array(6)].map((_, i) => (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Reduced number of diamonds for mobile */}
+        {[...Array(window.innerWidth > 768 ? 6 : 3)].map((_, i) => (
           <div
             key={`large-${i}`}
-            className={`diamond w-16 h-16 diamond-float ${i % 2 === 0 ? 'diamond-float-delay1' : 'diamond-float-delay2'}`}
+            className="diamond w-16 h-16 diamond-float"
             style={{
-              left: `${(i * 20) + 5}%`,
-              top: `${Math.random() * 20}%`,
+              position: 'fixed',
+              left: `${(i * 30) + 5}%`,
+              top: `${10 + (i * 5)}%`,
+              opacity: 0.1,
+              transform: 'rotate(45deg)',
             }}
           />
         ))}
         
-        {/* Medium diamonds */}
-        {[...Array(8)].map((_, i) => (
+        {window.innerWidth > 768 && [...Array(8)].map((_, i) => (
           <div
             key={`medium-${i}`}
-            className={`diamond w-12 h-12 diamond-float-reverse ${i % 3 === 0 ? 'diamond-float-delay2' : 'diamond-float-delay3'}`}
+            className="diamond w-12 h-12 diamond-float-reverse"
             style={{
+              position: 'fixed',
               left: `${(i * 15) + 2}%`,
-              top: `${40 + (Math.random() * 20)}%`,
+              top: `${40 + (i * 3)}%`,
+              opacity: 0.1,
+              transform: 'rotate(45deg)',
             }}
           />
         ))}
         
-        {/* Small diamonds */}
-        {[...Array(12)].map((_, i) => (
+        {window.innerWidth > 768 && [...Array(12)].map((_, i) => (
           <div
             key={`small-${i}`}
-            className={`diamond w-8 h-8 ${i % 2 === 0 ? 'diamond-float' : 'diamond-float-reverse'} diamond-float-delay${1 + (i % 3)}`}
+            className="diamond w-8 h-8"
             style={{
+              position: 'fixed',
               left: `${(i * 10) + 8}%`,
-              top: `${70 + (Math.random() * 20)}%`,
+              top: `${70 + (i * 2)}%`,
+              opacity: 0.1,
+              transform: 'rotate(45deg)',
             }}
           />
         ))}
