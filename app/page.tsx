@@ -6,15 +6,40 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gold p-8 font-sans relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
+        {/* Large diamonds */}
+        {[...Array(6)].map((_, i) => (
           <div
-            key={i}
-            className={`absolute w-4 h-4 bg-black opacity-10 transform rotate-45`}
+            key={`large-${i}`}
+            className={`diamond w-16 h-16 diamond-float ${i % 2 === 0 ? 'diamond-float-delay1' : 'diamond-float-delay2'}`}
             style={{
-              left: `${(i % 6) * 20}%`,
-              top: `${Math.floor(i / 6) * 20}%`,
+              left: `${(i * 20) + 5}%`,
+              top: `${Math.random() * 20}%`,
             }}
-          ></div>
+          />
+        ))}
+        
+        {/* Medium diamonds */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`medium-${i}`}
+            className={`diamond w-12 h-12 diamond-float-reverse ${i % 3 === 0 ? 'diamond-float-delay2' : 'diamond-float-delay3'}`}
+            style={{
+              left: `${(i * 15) + 2}%`,
+              top: `${40 + (Math.random() * 20)}%`,
+            }}
+          />
+        ))}
+        
+        {/* Small diamonds */}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={`small-${i}`}
+            className={`diamond w-8 h-8 ${i % 2 === 0 ? 'diamond-float' : 'diamond-float-reverse'} diamond-float-delay${1 + (i % 3)}`}
+            style={{
+              left: `${(i * 10) + 8}%`,
+              top: `${70 + (Math.random() * 20)}%`,
+            }}
+          />
         ))}
       </div>
       <main className="max-w-4xl mx-auto relative z-10">
@@ -42,16 +67,15 @@ export default function Home() {
           />
           <ServiceCard
             title="Cake Pre-orders 🧁"
-            description="Order cakes! Available when 12 pre-orders are reached."
+            description="Order cakes, bread, and other baked goods in advance! The orders will become available for delivery when 12 pre-orders are reached."
             buttonText="Preorder Now"
             href="/cake-preorder"
           />
           <ServiceCard
-            title="Password Recovery 🔒"
-            description="We help you recover forgotten passwords on Android."
-            buttonText="Coming Soon"
-            href="#"
-            comingSoon
+            title="Forgotten Password Recovery and Computer Repairs 🔒"
+            description="Need a tech wizard? I specialize in fixing computers and recovering forgotten passwords. Starting from R250 for password recovery and R500 for repairs. Let me handle the tech troubles for you!"
+            buttonText="Get Help Now"
+            href="/computer-services"
           />
           <div className="bg-white p-6 transform rotate-3 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
             <h2 className="text-2xl font-bold mb-4">Contact Us 📞</h2>

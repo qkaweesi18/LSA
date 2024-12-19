@@ -346,6 +346,53 @@ body {
   animation: bounce 2s ease-in-out infinite;
 }
 
+/* Diamond Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.diamond {
+  position: absolute;
+  background: black;
+  opacity: 0.1;
+  transform: rotate(45deg);
+  will-change: transform, opacity;
+}
+
+.diamond-float {
+  animation: float 8s ease-in-out infinite, pulse 4s ease-in-out infinite;
+}
+
+.diamond-float-reverse {
+  animation: float 8s ease-in-out infinite reverse, pulse 4s ease-in-out infinite;
+}
+
+.diamond-float-delay1 {
+  animation-delay: -2s;
+}
+
+.diamond-float-delay2 {
+  animation-delay: -4s;
+}
+
+.diamond-float-delay3 {
+  animation-delay: -6s;
+}
+
 /* Override Shadcn's button animations */
 .btn-gold::before,
 .btn-gold::after {
