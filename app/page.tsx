@@ -80,13 +80,13 @@ export default function Home() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Package Delivery Card - Increased width */}
-          <div className="bg-white p-6 rounded-lg shadow-brutal border-2 border-black min-w-[320px]">
+          {/* Package Delivery Card */}
+          <div className="bg-white p-6 rounded-lg shadow-brutal border-2 border-black min-w-[320px] transform transition-transform hover:-translate-y-1 hover:translate-x-1">
             <h2 className="text-xl font-bold mb-4 whitespace-nowrap">Package Delivery & Collection 🚚</h2>
             <p className="mb-6">We deliver and collect packages in the West Park area.</p>
             <Link href="#" passHref>
               <button 
-                className="w-full btn-gold font-bold py-2 px-4 border-4 border-black opacity-50 cursor-not-allowed"
+                className="w-full bg-[#FFE81E] hover:bg-[#FFD700] font-bold py-2 px-4 border-4 border-black shadow-brutal-sm transform transition-transform active:translate-x-1 active:translate-y-1 active:shadow-none opacity-50 cursor-not-allowed"
                 onClick={(e) => e.preventDefault()}
               >
                 Coming Soon
