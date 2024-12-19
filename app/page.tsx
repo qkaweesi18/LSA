@@ -80,14 +80,19 @@ export default function Home() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <ServiceCard
-            title="Package Delivery & Collection 🚐"
-            description="We deliver and collect packages in the West Park area."
-            buttonText="Coming Soon"
-            href="#"
-            className="max-w-[110%]"
-            comingSoon
-          />
+          {/* Package Delivery Card - Increased width */}
+          <div className="bg-white p-6 rounded-lg shadow-brutal border-2 border-black min-w-[320px]">
+            <h2 className="text-xl font-bold mb-4 whitespace-nowrap">Package Delivery & Collection 🚚</h2>
+            <p className="mb-6">We deliver and collect packages in the West Park area.</p>
+            <Link href="#" passHref>
+              <button 
+                className="w-full btn-gold font-bold py-2 px-4 border-4 border-black opacity-50 cursor-not-allowed"
+                onClick={(e) => e.preventDefault()}
+              >
+                Coming Soon
+              </button>
+            </Link>
+          </div>
           <ServiceCard
             title="Cake Pre-orders 🧁"
             description="Order cakes, bread, and other baked goods in advance! The orders will become available for delivery when 12 pre-orders are reached."
