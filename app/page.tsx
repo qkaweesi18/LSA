@@ -7,10 +7,14 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
+    // Wait for component to mount before checking window size
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      requestAnimationFrame(checkMobile);
     };
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
