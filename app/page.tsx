@@ -72,9 +72,9 @@ export default function Home() {
             href="/cake-preorder"
           />
           <ServiceCard
-            title="Forgotten Password Recovery and Computer Repairs 🔒"
-            description="Need a tech wizard? I specialize in fixing computers and recovering forgotten passwords. Starting from R250 for password recovery and R500 for repairs. Let me handle the tech troubles for you!"
-            buttonText="Get Help Now"
+            title="Tech Wizard Services 🪄"
+            description="Your one-stop solution for all tech problems! From password recovery to device optimization, we handle computers, phones, tablets, and more. Starting from R100. Prices are negotiable!"
+            buttonText="Get Tech Support"
             href="/computer-services"
           />
           <div className="bg-white p-6 transform rotate-3 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0_0_rgba(0,0,0,1)] border-4 border-black">
