@@ -82,10 +82,10 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <ServiceCard
             title="Package Delivery & Collection 🚚"
-            description="We deliver and collect packages in the West Park area."
+            description="We deliver and collect any kind of package in your local area."
             buttonText="Coming Soon"
             href="#"
-            className="min-w-[320px]"
+            className="min-w-[330px]"
             comingSoon
           />
           <ServiceCard
@@ -137,7 +137,7 @@ function ServiceCard({ title, description, buttonText, href, className = '', com
         </div>
       )}
       <div className="card-content">
-        <h2 className={`text-2xl font-bold mb-4 whitespace-pre-wrap whitespace-nowrap`}>{title}</h2>
+        <h2 className={`text-2xl font-bold mb-4 whitespace-nowrap`}>{title}</h2>
         <p className="mb-6">{description}</p>
         <Link href={href} passHref>
           <button 
