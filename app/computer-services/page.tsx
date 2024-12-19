@@ -42,7 +42,9 @@ export default function ComputerServices() {
 
   const handleSubmit = () => {
     const selectedService = services[serviceType as keyof typeof services];
-    const message = `Hello, I need help with ${selectedService.title}.\n\nMy problem: ${description}`;
+    const message = description.trim() 
+      ? `Hello, I need help with ${selectedService.title}.\n\nMy problem: ${description}`
+      : `Hello, I'm interested in your ${selectedService.title} service. Can you tell me more about it?`;
     window.open(`https://wa.me/27684535380?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -109,7 +111,6 @@ export default function ComputerServices() {
 
             <button
               onClick={handleSubmit}
-              disabled={!description.trim()}
               className="w-full btn-gold font-bold py-3 px-6 border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-all transform hover:rotate-1"
             >
               Get Tech Support Now
