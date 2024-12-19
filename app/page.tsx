@@ -1,13 +1,25 @@
 'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gold p-8 font-sans relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Reduced number of diamonds for mobile */}
-        {[...Array(window.innerWidth > 768 ? 6 : 3)].map((_, i) => (
+        {[...Array(isMobile ? 3 : 6)].map((_, i) => (
           <div
             key={`large-${i}`}
             className="diamond w-16 h-16 diamond-float"
@@ -21,7 +33,7 @@ export default function Home() {
           />
         ))}
         
-        {window.innerWidth > 768 && [...Array(8)].map((_, i) => (
+        {!isMobile && [...Array(8)].map((_, i) => (
           <div
             key={`medium-${i}`}
             className="diamond w-12 h-12 diamond-float-reverse"
@@ -35,7 +47,7 @@ export default function Home() {
           />
         ))}
         
-        {window.innerWidth > 768 && [...Array(12)].map((_, i) => (
+        {!isMobile && [...Array(12)].map((_, i) => (
           <div
             key={`small-${i}`}
             className="diamond w-8 h-8"
