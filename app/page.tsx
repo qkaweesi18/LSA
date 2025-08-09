@@ -137,7 +137,13 @@ function ServiceCard({ title, description, buttonText, href, className = '', com
         </div>
       )}
       <div className="card-content">
-        <h2 className={`text-2xl font-bold mb-4 whitespace-nowrap`}>{title}</h2>
+        <h2 className={`text-2xl font-bold mb-4 ${title === 'Package Delivery & Collection 🚚' ? '' : 'whitespace-nowrap'}`}>{
+          title === 'Package Delivery & Collection 🚚' ? (
+            <>
+              Package Delivery &<span className="block sm:inline"> Collection 🚚</span>
+            </>
+          ) : title
+        }</h2>
         <p className="mb-6">{description}</p>
         <Link href={href} passHref>
           <button 
