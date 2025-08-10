@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Description
 
-# 🍞 LSA – Local Services & Assistance  
+# 🍞 LSA – Local Services App 
 
-**Local Services & Assistance (LSA)** is a personal project that combines local bakery sales 🧁🥖 with on-demand computer troubleshooting services 💻.  
+**The Local Services App (LSA)** is a personal project that combines local bakery sales 🧁🥖 with on-demand computer troubleshooting services 💻.  
 
 ## 📌 Overview  
 LSA is a web platform designed to:  
