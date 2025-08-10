@@ -2,22 +2,23 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Description
 
-# LSA  
-**Local Services App(LSA)** is a personal project that combines local bakery sales with on-demand computer troubleshooting services.  
+# 🍞 LSA – Local Services & Assistance  
 
-## Overview  
+**Local Services & Assistance (LSA)** is a personal project that combines local bakery sales 🧁🥖 with on-demand computer troubleshooting services 💻.  
+
+## 📌 Overview  
 LSA is a web platform designed to:  
-- Sell **muffins, cakes, and bread** for local delivery.  
-- Allow customers to place and schedule **local deliveries** online.  
-- Offer **Windows software troubleshooting services** to help clients solve computer-related problems remotely or in person.  
+- 🥧 Sell **muffins, cakes, and bread** for local delivery.  
+- 🚚 Allow customers to place and schedule **local deliveries** online.  
+- 🛠️ Offer **Windows software troubleshooting services** to help clients solve computer-related problems remotely or in person.  
 
-## Features  
-- **Product Catalog**: Browse baked goods with images and descriptions.  
-- **Online Orders**: Place and schedule local deliveries.  
-- **Tech Support Requests**: Submit troubleshooting requests for Windows software issues.  
-- **Responsive Design**: Works on desktop and mobile devices.  
+## ✨ Features  
+- 📦 **Product Catalog**: Browse baked goods with images and descriptions.  
+- 🛒 **Online Orders**: Place and schedule local deliveries.  
+- 🖥️ **Tech Support Requests**: Submit troubleshooting requests for Windows software issues.  
+- 📱 **Responsive Design**: Works on desktop and mobile devices.  
 
-## Getting Started
+##  🛠️ Installation
 
 First, clone the repo and install dependancies:
 
