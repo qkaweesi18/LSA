@@ -32,6 +32,7 @@ git clone https://github.com/qkaweesi18/LSA.git
 
 
 Navigate to the root of the project: cd LSA
+
 Install Dependancies: npm install
 
 3. **Start the server**
